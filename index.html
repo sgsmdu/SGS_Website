@@ -267,7 +267,8 @@ document.getElementById("yr").textContent=y;
 document.getElementById("f").addEventListener("submit",function(e){
   e.preventDefault();
   var d=Object.fromEntries(new FormData(e.target));
-  d.time=new Date().toLocaleString("en-IN");\n  d.action="booking";
+  d.time=new Date().toLocaleString("en-IN");
+  d.action="booking";
   if(CFG.SHEET_URL){try{fetch(CFG.SHEET_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(d)})}catch(x){}}
   var m="Hi SGS, I need service.\nName: "+d.name+"\nPhone: "+d.phone+"\nDevice: "+d.device+"\nProblem: "+(d.issue||"-")+"\nService: "+d.mode;
   window.open("https://wa.me/"+CFG.WA+"?text="+encodeURIComponent(m),"_blank");
