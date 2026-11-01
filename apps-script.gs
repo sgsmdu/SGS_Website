@@ -43,12 +43,13 @@ function verifyOtp_(d) {
   const otp = String(d.otp || '').trim();
   if (email !== ADMIN_EMAIL || !/^\d{6}$/.test(otp)) return json_({ok:false,error:'Invalid login.'});
   const cache = CacheService.getScriptCache();
+  if (Number(cache.get('otp_tries_' + email) || 0) >= 5) return json_({ok:false,error:'Too many attempts. Request a new OTP after 5 minutes.'});
   if (!cache.get('otp_exp_' + email)) return json_({ok:false,error:'OTP expired. Request a new code.'});
   const prop = PropertiesService.getScriptProperties();
   const saved = prop.getProperty('otp_' + email) || '';
   const bits = saved.split(':');
-  if (bits.length !== 2 || bits[1] !== sha256_(bits[0] + otp)) return json_({ok:false,error:'Incorrect OTP.'});
-  prop.deleteProperty('otp_' + email); cache.remove('otp_exp_' + email);
+  if (bits.length !== 2 || bits[1] !== sha256_(bits[0] + otp)) { cache.put('otp_tries_' + email, String(Number(cache.get('otp_tries_' + email) || 0) + 1), OTP_TTL); return json_({ok:false,error:'Incorrect OTP.'}); }
+  prop.deleteProperty('otp_' + email); cache.remove('otp_exp_' + email); cache.remove('otp_tries_' + email);
   const token = Utilities.getUuid() + Utilities.getUuid();
   cache.put('session_' + sha256_(token), email, SESSION_TTL);
   return json_({ok:true,token:token,expiresIn:SESSION_TTL});
