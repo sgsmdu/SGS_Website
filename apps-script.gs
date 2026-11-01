@@ -20,6 +20,7 @@ function doPost(e) {
       case 'verifyOtp': return verifyOtp_(d);
       case 'createPost': return createPost_(d);
       case 'deletePost': return deletePost_(d);
+      case 'booking': return saveBooking_(d);
       default: return json_({ok:false,error:'Unknown action'});
     }
   } catch (err) { return json_({ok:false,error:String(err.message || err)}); }
@@ -51,6 +52,14 @@ function verifyOtp_(d) {
   const token = Utilities.getUuid() + Utilities.getUuid();
   cache.put('session_' + sha256_(token), email, SESSION_TTL);
   return json_({ok:true,token:token,expiresIn:SESSION_TTL});
+}
+function saveBooking_(d) {
+  const ss = SpreadsheetApp.openById(PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID'));
+  let sh = ss.getSheetByName('Bookings'); if (!sh) sh = ss.insertSheet('Bookings');
+  if (sh.getLastRow() === 0) sh.appendRow(['Time','Name','Phone','Device','Problem','Service']);
+  sh.appendRow([new Date(),String(d.name||'').slice(0,100),String(d.phone||'').slice(0,20),String(d.device||'').slice(0,100),String(d.issue||'').slice(0,1000),String(d.mode||'').slice(0,100)]);
+  MailApp.sendEmail({to:ADMIN_EMAIL,subject:'New SGS website enquiry: '+String(d.name||'Customer'),body:'Name: '+d.name+'\\nPhone: '+d.phone+'\\nDevice: '+d.device+'\\nProblem: '+d.issue+'\\nService: '+d.mode});
+  return json_({ok:true});
 }
 function createPost_(d) {
   if (!authorised_(d.token)) return json_({ok:false,error:'Session expired. Log in again.'});
