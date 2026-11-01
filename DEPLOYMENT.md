@@ -10,7 +10,7 @@
 ## 2. Google Sheets + Apps Script backend
 1. Create a Google Sheet for website enquiries and news posts. Copy its spreadsheet ID from the URL.
 2. Open Extensions → Apps Script and paste the repository apps-script.gs into the project.
-3. In Project Settings → Script Properties, add SPREADSHEET_ID = your Sheet ID, ADMIN_EMAIL = spidergridsolutions@gmail.com, and optionally DRIVE_FOLDER_ID = your Drive folder ID.
+3. In Project Settings → Script Properties, add SPREADSHEET_ID = your Sheet ID, and optionally DRIVE_FOLDER_ID = your Drive folder ID. The allowed admin email is fixed in apps-script.gs as spidergridsolutions@gmail.com.
 4. Run a function once in the editor and approve the requested Sheets, Gmail and Drive permissions.
 5. Deploy as Web app, execute as Me, access Anyone. Public enquiries use this endpoint; admin operations enforce the allowlisted email and OTP session server-side.
 6. Update the existing deployment to the latest code while keeping the same /exec URL. If the URL changes, update APPS_SCRIPT_URL in functions/api/[[path]].js.
