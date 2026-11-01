@@ -130,22 +130,105 @@ footer b{color:#fff}
 .news-actions a{font-size:.83rem;padding:8px 12px;border-radius:99px;text-decoration:none;font-weight:700;background:#edf2ff;color:var(--navy)}
 .news-actions a.call{background:var(--pink);color:white}
 .news-empty{color:var(--mute);padding:18px;background:#fff;border-radius:12px}
+
+/* SGS original brand refresh — clean, accessible and responsive */
+:root{--navy:#101b4f;--blue:#345cf2;--pink:#f04491;--ice:#f4f6ff;--ink:#18213f;--mute:#64708f;--line:#e4e9f7;--radius:22px}
+body{background:#fbfcff;color:var(--ink)}
+.wrap{max-width:1180px}
+.top{background:#0a1238;padding:8px 0}
+nav{box-shadow:0 8px 28px rgba(17,31,82,.06);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+nav .wrap{height:76px}
+.brand{font-family:var(--body);font-weight:900;font-size:1.2rem;letter-spacing:-.04em}
+.brand img{height:46px;width:46px}
+.brand small{display:block;font-size:.62rem;letter-spacing:.14em;color:#7580a2;font-weight:800;line-height:1.1}
+nav ul{gap:20px}
+nav ul a{font-size:.9rem;color:#384366}
+.hero{padding:88px 0 96px;background:radial-gradient(ellipse at 78% 45%,rgba(66,100,245,.32),transparent 38%),linear-gradient(125deg,#09143d,#142c78 65%,#203c99)}
+.hero::before{right:4%;top:5%;width:340px;height:420px;opacity:.08;filter:grayscale(1)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center}
+.hero-copy{position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:7px 12px;border:1px solid #ffffff35;border-radius:999px;color:#dce5ff;font-size:.8rem;font-weight:750;letter-spacing:.04em;background:#ffffff0d}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:#63e6be;box-shadow:0 0 0 5px #63e6be22}
+.hero h1{margin-top:20px;font-size:clamp(2.45rem,5vw,4.45rem);max-width:12ch;letter-spacing:-.055em}
+.hero h1 span{color:#ff79b4}
+.hero p{font-size:1.05rem;line-height:1.8;color:#d6defb;max-width:54ch}
+.hero .row{gap:12px}
+.hero-visual{position:relative;min-height:390px;display:grid;place-items:center}
+.hero-visual img{width:min(100%,520px);filter:drop-shadow(0 28px 38px #0005);position:relative;z-index:1}
+.visual-tag{position:absolute;z-index:2;background:#fff;color:#17234f;padding:12px 15px;border-radius:14px;box-shadow:0 14px 36px #0003;font-size:.82rem;font-weight:800}
+.visual-tag span{display:block;color:#7180a8;font-size:.7rem;font-weight:600}
+.visual-tag.one{left:-2%;top:14%}.visual-tag.two{right:-1%;bottom:15%}
+.chips b{border-radius:9px;background:#ffffff0d;border-color:#ffffff2b}
+section{padding:76px 0}
+h2{letter-spacing:-.04em}
+.lead{line-height:1.8}
+#services{background:#fff}
+.grid{grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:20px}
+.card{position:relative;background:#fff;border:1px solid var(--line);border-left:0;border-radius:18px;padding:22px;box-shadow:0 10px 28px rgba(23,39,91,.045);transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(23,39,91,.1)}
+.card:nth-child(3n){border-left:0}
+.card h3{margin:14px 0 8px}
+.card p{line-height:1.7;min-height:48px}
+.service-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:#eef2ff;color:var(--blue)}
+.service-icon svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.service-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.service-links a{border-radius:10px}
+.free{background:linear-gradient(110deg,#243fa9,#345cf2);border-radius:16px}
+.why{background:#f3f5ff}
+.stat{border:1px solid var(--line);box-shadow:0 8px 24px #14285b08}
+.pts>div{padding:20px;border:1px solid #e1e7fa;border-radius:16px;background:#fff}
+.pts h3{margin-bottom:7px}
+.brands span{border:1px solid #dce3f8;background:#fff;border-radius:9px}
+.book{background:linear-gradient(125deg,#0b1645,#182e7a)}
+form{box-shadow:0 18px 55px #0002;border-radius:20px}
+input,select,textarea{border:1px solid #d8e0f5}
+.btn{border-radius:12px;transition:transform .18s,filter .18s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.04)}
+.revs .rev{border:1px solid var(--line);border-radius:16px;background:#fff}
+.social{background:#f3f5ff}
+.links a{border:1px solid #dbe3ff;border-radius:10px}
+details{padding:18px 0}
+.visit>div:first-child{padding:24px;background:#f3f5ff;border-radius:18px}
+iframe.map{border-radius:18px;box-shadow:0 12px 34px #14285b16}
+footer{background:#091238}
+.wa{border-radius:14px;padding:13px 18px}
+.news-card{border-radius:16px}
+@media(max-width:850px){.hero .wrap{grid-template-columns:1fr}.hero-visual{min-height:280px;max-width:560px;width:100%;margin:0 auto}.hero{padding:60px 0 70px}.visual-tag.one{left:0}.visual-tag.two{right:0}}
+@media(max-width:760px){nav .wrap{min-height:68px}nav ul{background:#fff;border-top:1px solid var(--line)}.hero-visual{min-height:230px}.hero-visual img{max-width:400px}.visual-tag{font-size:.72rem;padding:9px 11px}.visual-tag.one{top:4%}.visual-tag.two{bottom:3%}section{padding:54px 0}.card p{min-height:0}}
+@media(prefers-reduced-motion:reduce){.card,.btn{transition:none}.card:hover,.btn:hover{transform:none}}
+
+
+.service-image{display:block;width:100%;height:116px;object-fit:contain;background:#f3f6ff;border-radius:12px;padding:7px;margin-bottom:14px}
+.card .service-icon{width:42px;height:42px;border-radius:12px}
+@media(max-width:760px){.service-image{height:104px}}
+
 </style>
 </head>
 <body>
+<svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg">
+<symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="12" rx="1.8"/><path d="M2 19h20l-2 2H4z"/></symbol>
+<symbol id="i-tools" viewBox="0 0 24 24"><path d="M14 7a5 5 0 0 0-6.5 6.5L3 18l3 3 4.5-4.5A5 5 0 0 0 17 10l-3 3-3-3z"/><path d="m15 4 5 5"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24"><path d="M3 8h4l2-3h6l2 3h4v11H3z"/><circle cx="12" cy="13.5" r="3.5"/></symbol>
+<symbol id="i-apple" viewBox="0 0 24 24"><path d="M12 8c-2-4-7-2-7 3 0 5 3 10 6 10 1 0 1-1 2-1s1 1 2 1c3 0 6-5 6-9 0-3-2-5-5-5-2 0-3 1-4 1z"/><path d="M13 5c0-2 2-4 4-4 0 2-1 4-4 4z"/></symbol>
+<symbol id="i-printer" viewBox="0 0 24 24"><path d="M6 8V3h12v5M6 17H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6zM17 11h1"/></symbol>
+<symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+<symbol id="i-fingerprint" viewBox="0 0 24 24"><path d="M12 11a2 2 0 0 0-2 2c0 3-1 6-2 8M12 7a6 6 0 0 0-6 6c0 2-.4 4-1 6M12 3a10 10 0 0 0-10 10M12 7a6 6 0 0 1 6 6c0 4 1 6 2 8M12 11a2 2 0 0 1 2 2c0 3 .4 5 1 7M16 4a10 10 0 0 1 6 9"/></symbol>
+<symbol id="i-battery" viewBox="0 0 24 24"><rect x="3" y="7" width="17" height="10" rx="2"/><path d="M20 10h2v4h-2M12 8l-3 5h4l-1 3"/></symbol>
+</svg>
 <div class="top"><div class="wrap"><span>Serving Arasaradi, Madurai</span><span>Call <a href="tel:+919176795665">91767 95665</a></span></div></div>
 <nav><div class="wrap">
-<a class="brand" href="#"><img src="/logo.png" alt="">SGS</a>
+<a class="brand" href="#" aria-label="SGS Spider Grid Solutions home"><img src="/logo.png" alt="Spider Grid Solutions logo"><span>SPIDER GRID SOLUTIONS<small>COMPUTER · LAPTOP · CCTV</small></span></a>
 <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">Menu</button><ul id="main-menu"><li><a href="#services">Services</a></li><li><a href="#news">News</a></li><li><a href="#why">Why us</a></li><li><a href="#reviews">Reviews</a></li><li><a href="#social">Videos</a></li><li><a href="#faq">FAQ</a></li><li><a href="#visit">Visit</a></li></ul>
 <a class="btn pink" href="#book">Book service</a>
 </div></nav>
 
-<header class="hero"><div class="wrap">
+<header class="hero"><div class="wrap"><div class="hero-copy">
+<div class="eyebrow"><i></i> LOCAL TECHNOLOGY SUPPORT · MADURAI</div>
 <h1>Madurai’s Trusted <span>Computer & CCTV</span> Service Partner</h1>
 <p>SGS Spider Grid Solutions. Laptop, desktop, Mac, printer, CCTV, biometric, inverter and data recovery under one roof in Arasaradi, Madurai.</p>
 <div class="row"><a class="btn pink" href="#book">Book a service</a><a class="btn ghost" href="tel:+919176795665">Call 91767 95665</a></div>
 <div class="chips"><b>Serving Madurai since 2015</b><b>Free diagnosis</b><b>Free pickup & delivery</b><b>Same-day service</b></div>
-</div></header>
+</div><div class="hero-visual"><img src="/assets/sgs-hero-placeholder.svg" alt="Original illustration of a laptop and security camera representing SGS services"><div class="visual-tag one">On-site CCTV support<span>Homes · Shops · Offices</span></div><div class="visual-tag two">Computer care<span>Sales · Repair · Upgrade</span></div></div></div></header>
 
 
 <section class="news-section" id="news"><div class="wrap">
@@ -157,15 +240,15 @@ footer b{color:#fff}
 <h2>Everything your system needs</h2>
 <p class="lead">Sales and service for new and renewed products. Exact price after free diagnosis.</p>
 <div class="grid">
-<div class="card"><h3>OS Reinstallation</h3><p>Windows setup, drivers, Office and antivirus.</p><span class="price">₹350 to ₹500</span></div>
-<div class="card"><h3>General Service</h3><p>Cleaning, thermal paste, fan and keyboard fixes.</p><span class="price">From ₹250</span></div>
-<div class="card"><h3>CCTV Sales, Service & Installation</h3><p>Cameras, DVR/NVR, cabling and remote viewing on your phone.</p><span class="price">Request installation quote</span></div>
-<div class="card"><h3>Mac Service</h3><p>MacBook and iMac repair, upgrade and macOS setup.</p><span class="price">From ₹500</span></div>
-<div class="card"><h3>Laptop & Desktop</h3><p>Brand new and renewed. Sales, upgrades, repairs.</p><span class="price q">Call to quote</span></div>
-<div class="card"><h3>Printer</h3><p>Sales, service and setup for inkjet, laser and tank printers.</p><span class="price q">Call to quote</span></div>
-<div class="card"><h3>Data Recovery</h3><p>Hard disk, SSD, pendrive and memory card. Your data stays private.</p><span class="price q">Call to quote</span></div>
-<div class="card"><h3>Biometric</h3><p>Attendance and access machines with installation.</p><span class="price q">Call to quote</span></div>
-<div class="card"><h3>Inverter</h3><p>Inverter and battery sales and service.</p><span class="price q">Call to quote</span></div>
+<div class="card"><img class="service-image" src="/assets/placeholder-computer.svg" alt="OS Reinstallation illustration" loading="lazy"><div class="service-icon" aria-hidden="true"><svg><use href="#i-laptop"></use></svg></div><h3>OS Reinstallation</h3><p>Windows setup, drivers, Office and antivirus.</p><span class="price">₹350 to ₹500</span></div>
+<div class="card"><img class="service-image" src="/assets/placeholder-technician.svg" alt="General Service illustration" loading="lazy"><div class="service-icon" aria-hidden="true"><svg><use href="#i-tools"></use></svg></div><h3>General Service</h3><p>Cleaning, thermal paste, fan and keyboard fixes.</p><span class="price">From ₹250</span></div>
+<div class="card"><img class="service-image" src="/assets/placeholder-cctv.svg" alt="CCTV Sales, Service & Installation illustration" loading="lazy"><div class="service-icon" aria-hidden="true"><svg><use href="#i-camera"></use></svg></div><h3>CCTV Sales, Service & Installation</h3><p>Cameras, DVR/NVR, cabling and remote viewing on your phone.</p><span class="price">Request installation quote</span></div>
+<div class="card"><img class="service-image" src="/assets/placeholder-technician.svg" alt="Mac Service illustration" loading="lazy"><div class="service-icon" aria-hidden="true"><svg><use href="#i-apple"></use></svg></div><h3>Mac Service</h3><p>MacBook and iMac repair, upgrade and macOS setup.</p><span class="price">From ₹500</span></div>
+<div class="card"><img class="service-image" src="/assets/placeholder-computer.svg" alt="Laptop & Desktop illustration" loading="lazy"><div class="service-icon" aria-hidden="true"><svg><use href="#i-laptop"></use></svg></div><h3>Laptop & Desktop</h3><p>Brand new and renewed. Sales, upgrades, repairs.</p><span class="price q">Call to quote</span></div>
+<div class="card"><img class="service-image" src="/assets/placeholder-technician.svg" alt="Printer illustration" loading="lazy"><div class="service-icon" aria-hidden="true"><svg><use href="#i-printer"></use></svg></div><h3>Printer</h3><p>Sales, service and setup for inkjet, laser and tank printers.</p><span class="price q">Call to quote</span></div>
+<div class="card"><img class="service-image" src="/assets/placeholder-computer.svg" alt="Data Recovery illustration" loading="lazy"><div class="service-icon" aria-hidden="true"><svg><use href="#i-database"></use></svg></div><h3>Data Recovery</h3><p>Hard disk, SSD, pendrive and memory card. Your data stays private.</p><span class="price q">Call to quote</span></div>
+<div class="card"><img class="service-image" src="/assets/placeholder-technician.svg" alt="Biometric illustration" loading="lazy"><div class="service-icon" aria-hidden="true"><svg><use href="#i-fingerprint"></use></svg></div><h3>Biometric</h3><p>Attendance and access machines with installation.</p><span class="price q">Call to quote</span></div>
+<div class="card"><img class="service-image" src="/assets/placeholder-technician.svg" alt="Inverter illustration" loading="lazy"><div class="service-icon" aria-hidden="true"><svg><use href="#i-battery"></use></svg></div><h3>Inverter</h3><p>Inverter and battery sales and service.</p><span class="price q">Call to quote</span></div>
 </div>
 <div class="service-links"><a href="/computer-laptop-service-madurai/">Computer & Laptop Service in Madurai</a><a href="/cctv-installation-madurai/">CCTV Installation in Madurai</a><a href="/macbook-service-madurai/">MacBook Service in Madurai</a><a href="/data-recovery-madurai/">Data Recovery in Madurai</a></div>
 <div class="free"><span>Free tech support</span><span>Free remote support</span><span>Free diagnosis</span><span>Free pickup & delivery</span></div>
