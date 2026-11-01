@@ -505,6 +505,7 @@ document.getElementById("f").addEventListener("submit",function(e){
   if(!CFG.PLACE_ID||!CFG.PLACES_KEY)return;
   fetch("https://places.googleapis.com/v1/places/"+CFG.PLACE_ID,{headers:{"X-Goog-Api-Key":CFG.PLACES_KEY,"X-Goog-FieldMask":"rating,userRatingCount,reviews"}})
   .then(function(r){return r.json()}).then(function(p){
+   if(!p.rating){console.warn("Places error:",p.error&&p.error.message);return}
     var s=document.getElementById("score");
     s.insertAdjacentHTML("afterbegin","<strong>"+p.rating+"</strong><span>★★★★★<br><small>"+p.userRatingCount+" Google reviews</small></span>");
     var box=document.getElementById("revs");
