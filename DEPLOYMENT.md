@@ -4,7 +4,7 @@
 1. In Cloudflare, open Workers & Pages → Create → Pages → Connect to Git.
 2. Select sgsmdu/SGS_Website and the main branch after the pull request is reviewed and merged.
 3. Framework preset: None. Build command: leave empty. Build output directory: repository root (.).
-4. Add both custom domains: sgsmdu.in and www.sgsmdu.in. The included _redirects file redirects www to the apex domain.
+4. Add both custom domains: sgsmdu.in and www.sgsmdu.in. Then create a Cloudflare Redirect Rule: if hostname equals www.sgsmdu.in, redirect to https://sgsmdu.in/$1 with status 301 and preserve the path and query string. Hostname redirects are not supported by the Pages _redirects file.
 5. Enable Always Use HTTPS. Confirm /robots.txt, /sitemap.xml and /sgsadmin5665/ load.
 
 ## 2. Google Sheets + Apps Script backend
