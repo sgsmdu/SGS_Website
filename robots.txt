@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /sgsadmin5665/
-Sitemap: https://www.sgsmdu.in/sitemap.xml
+Sitemap: https://sgsmdu.in/sitemap.xml
