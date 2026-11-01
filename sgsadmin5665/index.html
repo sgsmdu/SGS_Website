@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SGS Admin Login</title><meta name="robots" content="noindex,nofollow">
+<style>
+@font-face{font-family:Mandorlato;src:url('/Mandorlato-ExtraBold.otf') format('opentype');font-weight:800;font-display:swap}
+:root{--navy:#0b174b;--blue:#315ce8;--pink:#f43f91;--ice:#eef3ff;--ink:#172044}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(135deg,#0b174b,#1b3f9c);font:16px/1.5 system-ui,sans-serif;color:var(--ink);display:grid;place-items:center;padding:20px}.panel{width:min(720px,100%);background:white;border-radius:22px;padding:clamp(22px,5vw,38px);box-shadow:0 24px 80px #0005}.logo{font-size:1.8rem;font-weight:900;color:var(--navy);letter-spacing:.04em}.logo span{color:var(--pink);font-family:Mandorlato,sans-serif}h1{color:var(--navy);margin:12px 0 4px}p{color:#657094}.field{display:grid;gap:6px;margin:15px 0}label{font-weight:700}input,textarea{font:inherit;padding:12px;border:1px solid #cbd5f5;border-radius:10px;width:100%}button{border:0;background:var(--pink);color:white;padding:12px 18px;border-radius:999px;font-weight:800;cursor:pointer}button.secondary{background:var(--blue)}button:disabled{opacity:.55}.row{display:flex;gap:10px;flex-wrap:wrap}.hidden{display:none!important}.notice{padding:10px;border-radius:9px;background:var(--ice);margin:12px 0}.post{display:flex;justify-content:space-between;gap:12px;border:1px solid #e0e6fb;padding:12px;border-radius:12px;margin:10px 0}.post img{width:65px;height:65px;object-fit:cover;border-radius:8px}.post small{color:#657094}.danger{background:#b42345}.muted{font-size:.88rem}.topline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}#status{min-height:24px;color:#b42345}
+</style></head><body><main class="panel">
+<div class="topline"><div class="logo"><span>SGS</span> ADMIN</div><a href="/" style="color:#315ce8">← View website</a></div>
+<h1>Website content manager</h1><p>Secure sign-in is restricted to spidergridsolutions@gmail.com. A one-time code is sent to that Gmail inbox.</p>
+<div id="login">
+<div class="field"><label>Admin Gmail</label><input id="email" type="email" value="spidergridsolutions@gmail.com" readonly></div>
+<div class="row"><button id="send">Send OTP to Gmail</button></div>
+<div id="otpbox" class="hidden"><div class="field"><label>6-digit OTP</label><input id="otp" inputmode="numeric" maxlength="6" autocomplete="one-time-code" placeholder="Enter email code"></div><button id="verify">Verify and sign in</button></div>
+</div>
+<div id="dashboard" class="hidden">
+<div class="notice">Signed in as spidergridsolutions@gmail.com</div>
+<h2>Publish a home-page update</h2>
+<div class="field"><label>Post title</label><input id="title" maxlength="100" placeholder="Example: CCTV installation offer in Madurai"></div>
+<div class="field"><label>Post details</label><textarea id="body" rows="4" maxlength="1000" placeholder="Write your offer, service update or news…"></textarea></div>
+<div class="field"><label>Square image (JPG / PNG / WebP, under 3 MB)</label><input id="image" type="file" accept="image/jpeg,image/png,image/webp"></div>
+<div class="row"><button id="publish">Publish post</button><button id="logout" class="secondary">Log out</button></div>
+<h2 style="margin-top:26px">Published posts</h2><div id="posts"></div>
+</div><div id="status" role="status"></div>
+<p class="muted">Admin URL: /sgsadmin5665/ · Keep this link private. The login is enforced by the backend as well as this page.</p>
+</main>
+<script>
+const API='/api';let token='';
+const $=id=>document.getElementById(id);
+async function call(data){const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)});return r.json()}
+$('send').onclick=async()=>{try{$('send').disabled=true;let x=await call({action:'requestOtp',email:$('email').value});if(!x.ok)throw Error(x.error);$('otpbox').classList.remove('hidden');$('status').textContent=x.message}catch(e){$('status').textContent=e.message}finally{$('send').disabled=false}};
+$('verify').onclick=async()=>{try{let x=await call({action:'verifyOtp',email:$('email').value,otp:$('otp').value});if(!x.ok)throw Error(x.error);token=x.token;$('login').classList.add('hidden');$('dashboard').classList.remove('hidden');$('status').textContent='';loadPosts()}catch(e){$('status').textContent=e.message}};
+async function loadPosts(){try{let x=await fetch(API+'?action=posts').then(r=>r.json());$('posts').textContent='';(x.posts||[]).forEach(p=>{let el=document.createElement('div');el.className='post';let left=document.createElement('div');let title=document.createElement('b');title.textContent=p.title;let body=document.createElement('p');body.textContent=p.body;let date=document.createElement('small');date.textContent=p.date;left.append(title,body,date);if(p.image){let im=document.createElement('img');im.src=p.image;el.append(im)}let del=document.createElement('button');del.className='danger';del.textContent='Delete';del.onclick=async()=>{let z=await call({action:'deletePost',token,id:p.id});if(!z.ok){$('status').textContent=z.error;return}loadPosts()};el.append(left,del);$('posts').append(el)})}catch(e){$('status').textContent='Could not load posts. Check the API deployment.'}}
+$('publish').onclick=async()=>{try{$('publish').disabled=true;let file=$('image').files[0],imageData='',imageMime='';if(file){if(file.size>3*1024*1024)throw Error('Image must be under 3 MB.');imageMime=file.type;imageData=await new Promise((resolve,reject)=>{let r=new FileReader();r.onload=()=>resolve(r.result.split(',')[1]);r.onerror=reject;r.readAsDataURL(file)})}let x=await call({action:'createPost',token,title:$('title').value,body:$('body').value,imageData,imageMime});if(!x.ok)throw Error(x.error);$('title').value='';$('body').value='';$('image').value='';$('status').textContent='Published successfully.';loadPosts()}catch(e){$('status').textContent=e.message}finally{$('publish').disabled=false}};
+$('logout').onclick=()=>{token='';$('dashboard').classList.add('hidden');$('login').classList.remove('hidden');$('otpbox').classList.add('hidden');$('otp').value='';$('status').textContent='You have logged out.'};
+</script></body></html>
