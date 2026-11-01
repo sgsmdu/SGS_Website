@@ -23,7 +23,7 @@
 <p class="muted">Admin URL: /sgsadmin5665/ · Keep this link private. The login is enforced by the backend as well as this page.</p>
 </main>
 <script>
-const API='REPLACE_WITH_APPS_SCRIPT_WEB_APP_URL';let token='';
+const API='https://script.google.com/macros/s/AKfycbwHZLM2DGtcGt6qXtI14RlMhjVk4l-j8-ffRSl2K2yTv3oRBsSHCbOqWrlf0Sxr5UteHw/exec';let token='';
 const $=id=>document.getElementById(id);
 async function call(data){const r=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data)});return r.json()}
 $('send').onclick=async()=>{try{$('send').disabled=true;let x=await call({action:'requestOtp',email:$('email').value});if(!x.ok)throw Error(x.error);$('otpbox').classList.remove('hidden');$('status').textContent=x.message}catch(e){$('status').textContent=e.message}finally{$('send').disabled=false}};
