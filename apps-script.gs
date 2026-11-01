@@ -30,6 +30,7 @@ function requestOtp_(d) {
   if (email !== ADMIN_EMAIL) return json_({ok:false,error:'This email is not authorised.'});
   const cache = CacheService.getScriptCache();
   if (cache.get('otp_lock_' + email)) return json_({ok:false,error:'Please wait 60 seconds before requesting another code.'});
+  cache.remove('otp_tries_' + email);
   const otp = String(Math.floor(100000 + Math.random() * 900000));
   const salt = Utilities.getUuid();
   PropertiesService.getScriptProperties().setProperty('otp_' + email, salt + ':' + sha256_(salt + otp));
@@ -94,8 +95,11 @@ function authorised_(token) {
 function saveImage_(data, mime) {
   if (!/^image\/(jpeg|png|webp)$/.test(mime)) throw new Error('Only JPG, PNG or WebP images are allowed.');
   if (String(data).length > 4500000) throw new Error('Image is too large. Please upload an image under 3 MB.');
-  const folderId = PropertiesService.getScriptProperties().getProperty('DRIVE_FOLDER_ID');
-  const folder = folderId ? DriveApp.getFolderById(folderId) : DriveApp.createFolder('SGS Website News Images');
+  const props = PropertiesService.getScriptProperties();
+  let folderId = props.getProperty('DRIVE_FOLDER_ID');
+  let folder;
+  if (folderId) folder = DriveApp.getFolderById(folderId);
+  else { folder = DriveApp.createFolder('SGS Website News Images'); props.setProperty('DRIVE_FOLDER_ID', folder.getId()); }
   const bytes = Utilities.base64Decode(data);
   const ext = mime === 'image/png' ? 'png' : (mime === 'image/webp' ? 'webp' : 'jpg');
   const file = folder.createFile(Utilities.newBlob(bytes,mime,'sgs-news-' + Date.now() + '.' + ext));
