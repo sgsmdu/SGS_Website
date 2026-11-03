@@ -198,3 +198,7 @@ details{border-color:rgba(130,160,255,.25)}
 .tags b{border-radius:10px;padding:6px 12px;font-size:.85rem;background:rgba(255,61,139,.12);border:1px solid var(--pink)}
 
 #cctv .cta{margin-top:24px}.brands span a{text-decoration:none}
+
+.banner{display:block;width:100%;max-width:780px;aspect-ratio:16/9;object-fit:cover;border-radius:16px;margin-top:20px;border:1px solid rgba(130,160,255,.3);box-shadow:0 0 36px rgba(47,91,234,.45)}
+
+img.ph{height:auto}.banner{height:auto}
