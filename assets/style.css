@@ -36,7 +36,7 @@ nav ul a{text-decoration:none;font-weight:600;font-size:.95rem}nav ul a:hover{co
 .hero p{max-width:50ch;margin:18px 0 28px;color:#d6ddff;font-size:1.1rem}
 .hero .row{display:flex;gap:12px;flex-wrap:wrap}
 .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:34px}
-.chips b{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);padding:6px 14px;border-radius:999px;font-size:.88rem;font-weight:600}
+.chips span{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);padding:6px 14px;border-radius:999px;font-size:.88rem;font-weight:600}
 /* services */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;margin-top:30px}
 .card{background:var(--sky);border-radius:18px 18px 18px 4px;padding:22px;border-left:5px solid var(--blue)}
@@ -124,7 +124,7 @@ h2,h3,summary{color:#fff}
 @keyframes fade{0%{opacity:0;transform:scale(1.08)}5%,25%{opacity:1}32%,100%{opacity:0;transform:scale(1)}}
 .mq{overflow:hidden;border-block:1px solid rgba(130,160,255,.25);background:rgba(10,20,70,.6);padding:12px 0}
 .mq>div{display:flex;gap:28px;width:max-content;animation:mq 30s linear infinite;font-weight:700;color:#cfd8ff;white-space:nowrap}
-.mq b{color:var(--pink);text-shadow:0 0 8px var(--pink)}
+
 @keyframes mq{to{transform:translateX(-50%)}}
 .card{background:rgba(255,255,255,.06);border:1px solid rgba(130,160,255,.25);border-left:5px solid var(--blue);transition:box-shadow .3s,transform .3s}
 .card:nth-child(3n){border-left-color:var(--pink)}
@@ -175,7 +175,7 @@ details{border-color:rgba(130,160,255,.25)}
 .dot{width:10px;height:10px;border-radius:50%;background:#22e07a;box-shadow:0 0 10px #22e07a;animation:blink 1.3s infinite}
 @keyframes blink{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(34,224,122,.8)}50%{opacity:.35;box-shadow:0 0 0 9px rgba(34,224,122,0)}}
 .chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;max-width:620px}
-.chips b{display:flex;align-items:center;gap:10px;border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.07);border:1px solid rgba(130,160,255,.35);box-shadow:0 0 16px rgba(47,91,234,.25);font-weight:600;font-size:.9rem}
+.chips span{display:flex;align-items:center;gap:10px;border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.07);border:1px solid rgba(130,160,255,.35);box-shadow:0 0 16px rgba(47,91,234,.25);font-weight:600;font-size:.9rem}
 .chips .ic{color:#ff7fb3;filter:drop-shadow(0 0 6px #ff3d8b)}
 /* brands */
 .brands span{display:flex;align-items:center;gap:10px;font-family:var(--head);font-weight:700}
@@ -183,7 +183,7 @@ details{border-color:rgba(130,160,255,.25)}
 
 /* solid battery fill (no gaps) + web watermark */
 .btn,.links a,.wa{background-image:linear-gradient(90deg,var(--fill),var(--fill))}
-.bg b{position:absolute;right:3%;top:6%;width:min(48vw,540px);aspect-ratio:1267/1627;background:url(bg-web.png) center/contain no-repeat;filter:invert(1);opacity:.07}
+.bg .wm{position:absolute;right:3%;top:6%;width:min(48vw,540px);aspect-ratio:1267/1627;background:url(bg-web.png) center/contain no-repeat;filter:invert(1);opacity:.07}
 
 .crumb{font-size:.88rem;color:#a9b6e8;margin-bottom:14px}.crumb a{text-decoration:underline}
 .pg{padding:48px 0}.pg h1{font-size:clamp(1.9rem,4.6vw,3rem);max-width:24ch}.pg h1 span{color:var(--pink);text-shadow:0 0 22px rgba(255,61,139,.8)}
@@ -195,7 +195,7 @@ details{border-color:rgba(130,160,255,.25)}
 .about{display:flex;gap:24px;align-items:center;flex-wrap:wrap;background:rgba(255,255,255,.06);border:1px solid rgba(130,160,255,.3);border-radius:18px;padding:26px;box-shadow:0 0 36px rgba(47,91,234,.35);margin-top:24px}
 .avatar{width:96px;height:96px;border-radius:20px;display:grid;place-items:center;font-size:1.8rem;background:linear-gradient(135deg,#2f5bea,#ff3d8b);box-shadow:0 0 28px rgba(255,61,139,.6);color:#fff}
 .about p{max-width:64ch;color:#c9d3f7}.tags{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-.tags b{border-radius:10px;padding:6px 12px;font-size:.85rem;background:rgba(255,61,139,.12);border:1px solid var(--pink)}
+.tags span{border-radius:10px;padding:6px 12px;font-size:.85rem;background:rgba(255,61,139,.12);border:1px solid var(--pink)}
 
 #cctv .cta{margin-top:24px}.brands span a{text-decoration:none}
 
@@ -248,3 +248,9 @@ html,body{overflow-x:hidden}
  .cta .btn{flex:1 1 100%}
 }
 @media(max-width:380px){.chips{grid-template-columns:1fr}.stats{grid-template-columns:1fr}}
+
+#reviews-widget{margin-top:26px;background:#fff;color:#141a3a;border-radius:16px;padding:16px;min-height:120px;box-shadow:0 0 30px rgba(47,91,234,.35)}
+#reviews-widget:empty{display:none}
+
+.mq>div span::after{content:"●";color:var(--pink);text-shadow:0 0 8px var(--pink);margin-left:28px}
+.wm{display:block}
