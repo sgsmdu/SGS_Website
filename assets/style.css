@@ -254,3 +254,9 @@ html,body{overflow-x:hidden}
 
 .mq>div span::after{content:"●";color:var(--pink);text-shadow:0 0 8px var(--pink);margin-left:28px}
 .wm{display:block}
+
+.hero h1{font-size:clamp(1.9rem,4.6vw,3.1rem);max-width:22ch}
+.hero .sub{font-weight:700;color:#ff7fb3;margin:0 0 6px;font-size:1.05rem;text-shadow:0 0 14px rgba(255,61,139,.6)}
+
+.brand .bn{display:flex;flex-direction:column;line-height:1.05}
+.brand small{font:600 .6rem var(--head);letter-spacing:.09em;text-transform:uppercase;color:#a9b6e8;text-shadow:none;margin-top:2px}
